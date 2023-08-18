@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 
   guessGIF: {
     width: "100%",
-    height: 200,
+    height: 201,
     borderColor: "black",
   },
 
