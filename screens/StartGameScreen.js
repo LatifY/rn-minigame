@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Button, Pressable, TextInput, StyleSheet, Image, Alert, AlertButton} from "react-native";
+import { View, Button, Text, TextInput, StyleSheet, Image, Alert, AlertButton} from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 
 
@@ -29,6 +29,8 @@ export default function StartGameScreen({pickNumber}) {
 
   return (
     <View style={styles.screen}>
+      <Text style={styles.title}>lemme guess!</Text>
+
       <View style={styles.inputContainer}>
         <TextInput
           value={number}
@@ -107,5 +109,13 @@ const styles = StyleSheet.create({
     fontFamily: "ms_bold",
     textAlign: "center",
     fontWeight: "bold",
+  },
+
+  
+  title: {
+    fontSize: 40,
+    fontWeight: "bold",
+    marginLeft: 20,
+    marginTop: 20
   },
 });

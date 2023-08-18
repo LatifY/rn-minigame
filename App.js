@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -27,8 +27,8 @@ export default function App() {
 
   screen = <StartGameScreen pickNumber={pickedNumberHandler} />;
 
-  if(pickedNumber){
-    screen = <GameScreen number={pickedNumber}/>;
+  if (pickedNumber) {
+    screen = <GameScreen number={pickedNumber} />;
   }
 
   if (!loaded) {
@@ -37,8 +37,8 @@ export default function App() {
 
   return (
     <LinearGradient colors={["#ffffff", "#f5f5f5"]} style={styles.root}>
-      <Text style={styles.title}>lemme guess!</Text>
-      {screen}
+
+      <SafeAreaView style={styles.root}>{screen}</SafeAreaView>
     </LinearGradient>
   );
 }
@@ -55,10 +55,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  title: {
-    fontSize: 40,
-    fontWeight: "bold",
-    marginLeft: 20,
-    marginTop: 80,
-  },
 });
