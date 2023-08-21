@@ -8,27 +8,44 @@ import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
 
 import { useEffect, useState } from "react";
+import GameOverScreen from "./screens/GameOverScreen";
 
 export default function App() {
   const [loaded] = useFonts({
-    ms_medium: require("./assets/fonts/Montserrat-Medium.ttf"),
-    ms_regular: require("./assets/fonts/Montserrat-Regular.ttf"),
-    ms_bold: require("./assets/fonts/Montserrat-Bold.ttf"),
-    ms_extrabold: require("./assets/fonts/Montserrat-ExtraBold.ttf"),
+    "ms_medium": require("./assets/fonts/Montserrat-Medium.ttf"),
+    "ms_regular": require("./assets/fonts/Montserrat-Regular.ttf"),
+    "ms_bold": require("./assets/fonts/Montserrat-Bold.ttf"),
+    "ms_extrabold": require("./assets/fonts/Montserrat-ExtraBold.ttf"),
   });
 
   let screen;
 
   const [pickedNumber, setPickedNumber] = useState();
+  const [isGameOver, setIsGameOver] = useState(false)
+  const [guessedNumberCount, setguessedNumberCount] = useState(0)
 
   const pickedNumberHandler = (number) => {
     setPickedNumber(number);
+    setIsGameOver(false)
   };
+
+  const guessedNumberCountHandler = (count) => {
+    setguessedNumberCount(count)
+  }
+
+  const restartGameHandler = () => {
+    setPickedNumber()
+    setIsGameOver(false)
+  }
 
   screen = <StartGameScreen pickNumber={pickedNumberHandler} />;
 
-  if (pickedNumber) {
-    screen = <GameScreen number={pickedNumber} />;
+  if (pickedNumber && !isGameOver) {
+    screen = <GameScreen number={pickedNumber} setIsGameOver={setIsGameOver} guessedNumberCountHandler={guessedNumberCountHandler}/>;
+  }
+
+  if(pickedNumber && isGameOver){
+    screen = <GameOverScreen number={pickedNumber} guessedNumberCount={guessedNumberCount} restartGameHandler={restartGameHandler} />
   }
 
   if (!loaded) {

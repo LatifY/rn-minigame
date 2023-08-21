@@ -1,31 +1,37 @@
 import React, { useState } from "react";
-import { View, Button, Text, TextInput, StyleSheet, Image, Alert, AlertButton} from "react-native";
+import {
+  View,
+  Button,
+  Text,
+  TextInput,
+  StyleSheet,
+  Image,
+  Alert,
+  AlertButton,
+} from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 
-
-export default function StartGameScreen({pickNumber}) {
+export default function StartGameScreen({ pickNumber }) {
   const [number, setNumber] = useState();
-  let alertButtons = [{text: "Sorry", style:"destructive"}]
+  let alertButtons = [{ text: "Sorry", style: "destructive" }];
+  
   const resetNumber = () => {
-    setNumber()
-  }
+    setNumber();
+  };
 
   const confirmNumber = () => {
-    const choosenNumber = parseInt(number)
-    if(isNaN(choosenNumber)){
-      Alert.alert("Error", "Please provide a number.", alertButtons)
-    }
-    else if(number === 0){
-      Alert.alert("Error", "Number cannot be zero :)", alertButtons)
-    }
-    else if(number < 0 || number >= 100){
-      Alert.alert("Error", "Number should be between 0-100", alertButtons)
-    }
-    else{
-      pickNumber(choosenNumber)
+    const choosenNumber = parseInt(number);
+    if (isNaN(choosenNumber)) {
+      Alert.alert("Error", "Please provide a number.", alertButtons);
+    } else if (number === 0) {
+      Alert.alert("Error", "Number cannot be zero :)", alertButtons);
+    } else if (number < 0 || number >= 100) {
+      Alert.alert("Error", "Number should be between 0-100", alertButtons);
+    } else {
+      pickNumber(choosenNumber);
     }
     return;
-  }
+  };
 
   return (
     <View style={styles.screen}>
@@ -44,20 +50,19 @@ export default function StartGameScreen({pickNumber}) {
         />
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={resetNumber}>
-              reset
-            </PrimaryButton>
+            <PrimaryButton onPress={resetNumber}>reset</PrimaryButton>
           </View>
 
           <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={confirmNumber}>
-              confirm
-            </PrimaryButton>
+            <PrimaryButton onPress={confirmNumber}>confirm</PrimaryButton>
           </View>
         </View>
       </View>
 
-      <Image style={styles.image} source={require("../assets/images/marshmallow.png")}  />
+      <Image
+        style={styles.image}
+        source={require("../assets/images/marshmallow.png")}
+      />
     </View>
   );
 }
@@ -93,6 +98,7 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     marginTop: 20,
     flexDirection: "row",
+    gap: 10,
   },
   buttonContainer: {
     flex: 1,
@@ -111,11 +117,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  
   title: {
-    fontSize: 40,
-    fontWeight: "bold",
+    fontSize: 44,
+    letterSpacing: -0.8,
+    fontWeight: "900",
     marginLeft: 20,
-    marginTop: 20
+    marginTop: 20,
   },
 });

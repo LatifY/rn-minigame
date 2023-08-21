@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
+import Wobblifier from "react-native-wobblifier/lib/Wobblifier";
 
 export default function PrimaryButton({ children, onPress }) {
   const onPressHandler = (event) => {
@@ -21,7 +22,6 @@ export default function PrimaryButton({ children, onPress }) {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 5,
     padding: 15,
     elevation: 4,
     shadowColor: "black",
@@ -35,12 +35,12 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
   },
 
   pressed: {
-    opacity: 0.7
-  }
+    opacity: 0.7,
+  },
 });
